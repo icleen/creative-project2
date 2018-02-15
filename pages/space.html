@@ -5,11 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/styles.css">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="/styles.css">
 
     <title>JavaScript Lab</title>
   </head>
@@ -26,11 +25,11 @@
       	  </button>
 
       	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      	    <ul class="navbar-nav mr-auto">
-      	      <li class="nav-item active">
+            <ul class="navbar-nav mr-auto">
+      	      <li class="nav-item">
                 <a class="nav-link" href="/index.html">Home</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="/pages/space.html">More Space Images</a>
               </li>
               <li class="nav-item">
@@ -44,10 +43,17 @@
       <div class="main">
 
         <div class="title">
-          <h1>NASA Image of the Day!</h1>
+          <h1>Space Images!</h1>
         </div>
 
-        <div id="nasaPlanetary">
+        <div id="nasa-search">
+          <form>
+            <label>Search for Space Pictures:</label></br>
+            <input id="spaceInput" type="text"></input><br/>
+            <input id="spaceSubmit" type="submit" value="Submit"></input>
+          </form>
+          <div id="space-results">
+          </div>
         </div>
 
       </div>

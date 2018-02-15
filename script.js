@@ -1,33 +1,7 @@
 // lab 2 javascript
 // Iain Lee
 
-// const Clarifai = require('clarifai');
-// // initialize with your api key. This will also work in your browser via http://browserify.org/
-// const app = new Clarifai.App({
-//  apiKey: 'dc56a0316fc04667acc1577d0734113e'
-// });
-//
-// app.models.predict(Clarifai.GENERAL_MODEL, 'https://samples.clarifai.com/metro-north.jpg').then(
-//   function(response) {
-//     console.log(response);
-//   },
-//   function(err) {
-//     console.error(err);
-//   }
-// );
-//
-// app.models.predict("aaa03c23b3724a16a56b629203edc62c", "https://samples.clarifai.com/metro-north.jpg").then(
-//     function(response) {
-//       // do something with response
-//     },
-//     function(err) {
-//       // there was an error
-//     }
-//   );
-
 var NASA_API_KEY = "6snweK2FJHRWEjLEcfMhjtVSco4gYqfKE9N8I5cM";
-var SPACEX_API_KEY = "6snweK2FJHRWEjLEcfMhjtVSco4gYqfKE9N8I5cM";
-
 $(document).ready(function() {
 
     var myurl = "https://api.nasa.gov/planetary/apod?api_key=";
@@ -36,92 +10,97 @@ $(document).ready(function() {
         url : myurl,
         dataType : "json",
         success : function(json) {
-            console.log(json);
+            // console.log(json);
             var results = "";
-            results += '<h2>' + json.title + "</h2>";
+            results += '<h2 class="title">' + json.title + "</h2>";
             results += '<p>' + json.explanation + '</p>'
             results += '<img id="planetaryIMG" src="' + json.url + '"/>';
             $("#nasaPlanetary").html(results);
+            $("#nasaPlanetary").attr("class", "nasa-planetary");
             $("#planetaryIMG").css('width', '100%');
         }
     });
 
-    var EPICresponse = function(json) {
-        var results = "";
-        results += '<h2>Weather in ' + json.name + "</h2>";
-        for (var i=0; i<json.weather.length; i++) {
-            results += '<img src="http://openweathermap.org/img/w/' + json.weather[i].icon + '.png"/>';
-        }
-        results += '<h2>' + json.main.temp + " &deg;F</h2>";
-        results += '<h5>' + json.main.temp_min + "&deg;F - " + json.main.temp_max + "&deg;F</h5>";
-        results += '<h5>' + json.main.humidity + "% humidity</h5>";
-        results += '<h5>wind speed: ' + json.wind.speed + "mph</h5>";
-        results += "<h5>";
-        for (var i=0; i<json.weather.length; i++) {
-            results += json.weather[i].description;
-            if (i !== json.weather.length - 1)
-                  results += ", ";
-        }
-        results += "</h5>";
-        $("#weatherResults").html(results); // put this in a div
-        $("#weatherResults").css("border", "1px solid #273B49");
-    }
 
-
-    var spacexResponse = function(json) {
+    var spaceResponse = function(json) {
 
         console.log(json);
         var results = "";
         var max = 10;
         var i = 0;
-        if (json['items'].length < max)
-            max = json['items'].length;
+        if (json.collection.items.length < max)
+            max = json.collection.items.length;
 
         results += '<ul>'
         for(; i < max; i++) {
-            results += '<li><a href="' + json['items'][i]['link'] + '">';
-            results += json['items'][i]['title'] + '</a></li>';
+            results += '<li>';
+            results += '<h2>' + json.collection.items[i].data[0].title + '</h2>';
+            results += '<img src="' + json.collection.items[i].links[0].href + '" />';
+            results += '<p>' + json.collection.items[i].data[0].description + '</p>';
+            results += '</li>';
         }
         results += '</ul>'
 
-        $("#stack-results").html(results);
+        $("#space-results").html(results);
         // $("#stack-results").css("border", "1px solid #273B49");
     }
 
-
-    $("#weatherSubmit").click(function(e) {
+    $("#spaceSubmit").click(function(e) {
 
     	e.preventDefault();
-        var myurl = "https://api.nasa.gov/EPIC/api/natural/images?api_key=" + NASA_API_KEY;
+        var value = $("#spaceInput").val();
+        var myurl = "https://images-api.nasa.gov/search?media_type=image&q=" + value;
 
         $.ajax({
     	    url : myurl,
     	    dataType : "json",
-    	    success : EPICresponse
+    	    success : spaceResponse
     	});
 
     }); // end of click function
 
-    $("#stack-search").click(function(e) {
 
-    	e.preventDefault();
-    	var value = $("#stack-tag").val();
-        var tags = value.split(" ")
-        console.log(tags);
+    var EPICresponse = function(json) {
+        console.log(json);
+        var results = "";
 
-        var myurl= "https://api.stackexchange.com/2.2/search?order=desc&sort=activity&tagged=";
-        for(var i = 0; i < tags.length; i++) {
-            myurl += tags[i] + ";";
+        var max = 1;
+        if (json.length < max)
+            max = json.length;
+
+        results += '<ul>';
+        for(var i = 0; i < max; i++) {
+            results += '<li>';
+            results += '<h2>' + json[i].date + '</h2>';
+
+            var dates = json[i].date.split('-');
+            var src = "https://epic.gsfc.nasa.gov/archive/natural";
+            src += "/" + dates[0] + "/" + dates[1]; // "https://epic.gsfc.nasa.gov/archive/natural/2018/02"
+            src += "/" + dates[2].split(' ')[0]; // "https://epic.gsfc.nasa.gov/archive/natural/2018/02/14"
+            src += "/png/" + json[0].image + ".png";
+
+            results += '<img src="' + src + '" />';
+            results += '<p><a href="https://epic.gsfc.nasa.gov/">' + json[i].caption + '</a></p>';
+            results += '</li>';
         }
-        myurl += "&site=stackoverflow";
+        results += '</ul>';
 
-        $.ajax({
-    	    url : myurl,
-    	    dataType : "json",
-    	    success : searchResponse
-    	});
+        $("#nasaEPIC").html(results); // put this in a div
+        $("#disapear").css('display', 'none');
+    }
 
-    }); // end of stack-search click
+    var myurl = "https://epic.gsfc.nasa.gov/api/natural";
+    // myurl += "?api_key=" + NASA_API_KEY;
+    // var temp = "<p>loading...</p>";
+    // $("#nasaEPIC").html(temp);
+    $.ajax({
+        url : myurl,
+        dataType : "json",
+        success : EPICresponse,
+        failure : function(e) {
+            console.log("failed");
+        }
+    });
 
 }); // end of document ready
 

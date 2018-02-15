@@ -1,14 +1,87 @@
-/*.main {
-    height: 200px;
-}*/
+
+img {
+    width: 100%;
+}
+
+.title h1 {
+    border-bottom: 1px solid black;
+    padding: 0.5rem;
+}
+
+#nasaPlanetary {
+    padding: 1rem;
+}
+
+#nasaPlanetary p {
+    /*margin-top: 0;
+    margin-bottom: 0rem;
+    padding: 1rem;*/
+    color: black;
+}
+
+#space-results {
+    text-align: center;
+    padding: 1rem;
+}
+
+#space-results ul {
+    padding: 0px;
+    list-style-type: none;
+    margin-bottom: 0rem;
+}
+
+#space-results li {
+    padding-top: 1rem;
+    color: #E75A7C;
+    background-color: #273B49;
+}
+
+#nasaEPIC {
+    text-align: center;
+    padding: 1rem;
+}
+
+#nasaEPIC ul {
+    padding: 0px;
+    list-style-type: none;
+    margin-bottom: 0rem;
+}
+
+#nasaEPIC li {
+    padding-top: 1rem;
+    color: #E75A7C;
+    background-color: #273B49;
+}
+
+p {
+    margin-top: 1rem;
+    color: white;
+    margin-bottom: 1rem;
+    padding: 0rem 1rem 1rem 1rem;
+}
+
+#nasaEPIC a {
+    color: inherit;
+}
+
+#disapear {
+    text-align: center;
+    padding: 2rem;
+}
 
 .bg-dark {
     background-color: #273B49!important;
 }
 
 .nav-link {
-    color: #E75A7C!important;
     font-size: 1.3em;
+    color: #E75A7C!important;
+}
+
+.navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav
+.nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark
+.navbar-nav .show>.nav-link {
+    color: #fff!important;
 }
 
 .main .title {
@@ -29,56 +102,6 @@ label {
     margin-bottom: 0.1rem;
 }
 
-.nasa-planetary {
-    text-align: center;
-    border: 1px solid black;
-}
-
-#weatherResults {
-    text-align: center;
-    padding: 5px;
-    margin-left: 3rem;
-    margin-right: 3rem;
-    /*border: 1px solid #273B49;*/
-}
-
-#stack-results {
-    text-align: left;
-    padding: 0px;
-    margin-left: 3rem;
-    margin-right: 3rem;
-}
-
-#stack-results ul {
-    padding: 0px;
-    list-style-type: none;
-    margin-bottom: 0rem;
-}
-
-#stack-results li {
-    /*border-bottom: 1px solid black;*/
-    /*padding: 5px;*/
-    background-color: #273B49;
-}
-
-#stack-results li a {
-  display: flex;
-  color: #E75A7C;
-  /* font-weight: bold; */
-  font-size: 1.2em;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-#stack-results li:hover:not(.active) {
-  background-color: #273B49;
-
-}
-
-#stack-results li a:hover:not(.active) {
-  color: black;
-}
-
 
 .footer {
     margin-top: 10px;
@@ -96,7 +119,7 @@ label {
     text-decoration: none;
 }
 
-@media only screen and (min-width: 992px) {
+/*@media only screen and (min-width: 992px) {
     .main {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -112,19 +135,4 @@ label {
         /*grid-column: 1 / span 2;*/
     }
 
-    #stack-form {
-        grid-area: stack-form;
-    }
-
-    #stack-results {
-        grid-area: stack-results;
-    }
-
-    #weather-form {
-        grid-area: weather-form;
-    }
-
-    #weatherResults {
-        grid-area: weatherResults;
-    }
-}
+}*/
