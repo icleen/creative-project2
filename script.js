@@ -37,18 +37,12 @@ $(document).ready(function() {
         dataType : "json",
         success : function(json) {
             console.log(json);
-            // if (json.media_type == "image") {
-            //     $("#planet-image").attr("src", json.url);
-            //     $("#planet-image").css("width", "100%");
-            //     $("#planet-image").attr("alt", json.title);
-            // }else {
-            //     $("#nasa-planetary").css("display", "none");
-            // }
             var results = "";
             results += '<h2>' + json.title + "</h2>";
             results += '<p>' + json.explanation + '</p>'
-            results += '<img src="' + json.url + '"/>';
-            $("#nasa-planetary").html(results);
+            results += '<img id="planetaryIMG" src="' + json.url + '"/>';
+            $("#nasaPlanetary").html(results);
+            $("#planetaryIMG").css('width', '100%');
         }
     });
 

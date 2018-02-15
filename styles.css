@@ -29,6 +29,11 @@ label {
     margin-bottom: 0.1rem;
 }
 
+.nasa-planetary {
+    text-align: center;
+    border: 1px solid black;
+}
+
 #weatherResults {
     text-align: center;
     padding: 5px;
