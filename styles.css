@@ -6,6 +6,8 @@ img {
 .title h1 {
     border-bottom: 1px solid black;
     padding: 0.5rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
 }
 
 #nasaPlanetary {
@@ -34,6 +36,10 @@ img {
     padding-top: 1rem;
     color: #E75A7C;
     background-color: #273B49;
+}
+
+#space-results img {
+    width: 90%;
 }
 
 #nasaEPIC {
@@ -119,20 +125,31 @@ label {
     text-decoration: none;
 }
 
-/*@media only screen and (min-width: 992px) {
-    .main {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-        "title title"
-        "weather-form stack-form"
-        "weatherResults stack-results"
-        "none stack-results"
+@media only screen and (min-width: 992px) {
+    .header a {
+        border-right: 1px solid white;
+    }
+    /*img {
+        max-width: 75%;
+    }*/
+
+    #nasaPlanetary {
+        padding-right: 9rem;
+        padding-left: 9rem;
     }
 
-    .title {
-        grid-area: title;
-        /*grid-column: 1 / span 2;*/
+    #space-results {
+        padding-right: 9rem;
+        padding-left: 9rem;
     }
 
-}*/
+    #nasaEPIC {
+        padding-right: 9rem;
+        padding-left: 9rem;
+    }
+
+    .title h1 {
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+}
